@@ -2,107 +2,107 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Schul-News – HAK/HAS Sacré Coeur</title>
+  <title>HAK/HAS Sacré Coeur News</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background: #f0f8f8;
+      background: #f9f9f9;
     }
     header {
-      background: #e0ffff; /* helles Türkis */
-      color: #333;
-      padding: 10px 20px;
+      background: #ffffff;
+      padding: 10px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      position: relative;
+      border-bottom: 2px solid #ccc;
     }
-    header .school-name {
-      font-size: 14px;
+    header h1 {
+      font-size: 18px;
+      margin: 0;
+    }
+    .admin {
+      text-align: center;
+      font-size: 16px;
+      margin: 10px 0;
       font-weight: bold;
     }
-    header img.logo {
-      height: 50px;
-      width: auto;
-    }
-    header .admin {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 18px;
-      font-weight: normal;
-      color: #006666;
-    }
-    main {
-      padding: 20px;
-    }
-    h2 {
-      color: #006666;
-      border-bottom: 2px solid #00cccc;
-      padding-bottom: 5px;
-    }
     .news {
-      background: white;
-      padding: 15px;
-      margin-top: 15px;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      background: turquoise;
+      padding: 20px;
+      min-height: 200px;
     }
-
-    /* Passwortbereich */
-    #passwortBereich {
+    .news h2 {
+      margin-top: 0;
+    }
+    .logo {
+      height: 50px;
+    }
+    footer {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      font-size: 12px;
+      color: gray;
+    }
+    footer a {
+      color: gray;
+      text-decoration: none;
+    }
+    #content {
+      display: none;
+    }
+    #codePrompt {
       text-align: center;
-      margin-top: 30px;
-    }
-    #passwortBereich input, #passwortBereich button {
-      padding: 10px;
-      font-size: 16px;
-      margin: 5px;
+      margin-top: 20%;
     }
   </style>
-</head>
-<body>
-
-  <header>
-    <div class="school-name">Hallo HAK/HAS Sacré Coeur</div>
-    <div class="admin">Jetzige Administrator: Ömer Celebi 2Ck</div>
-    <img class="logo" src="logo.png" alt="HAK/HAS Sacré Coeur Logo">
-  </header>
-
-  <main>
-    <div id="passwortBereich">
-      <h2>Gib den Zugangscode ein:</h2>
-      <input type="password" id="passwort" placeholder="Code hier eingeben">
-      <button onclick="checkPasswort()">Einloggen</button>
-    </div>
-
-    <div id="newsContent" style="display:none;">
-      <h2>Neuigkeiten</h2>
-
-      <div class="news">
-        <h3>News 1</h3>
-        <p>1. Woche: Schule beginnt am 1. September.</p>
-      </div>
-
-      <!-- Weitere News hier -->
-    </div>
-  </main>
-
   <script>
-    function checkPasswort() {
-      const code = document.getElementById('passwort').value;
-      const richtigerCode = "swensac"; // <-- Passwort jetzt "swensac"
-      if(code === richtigerCode) {
-        document.getElementById('newsContent').style.display = 'block';
-        document.getElementById('passwortBereich').style.display = 'none';
-        alert("Zugang gewährt!");
+    function checkCode() {
+      const code = document.getElementById("codeInput").value;
+      if (code === "swensac") {
+        document.getElementById("codePrompt").style.display = "none";
+        document.getElementById("content").style.display = "block";
       } else {
-        alert("Falscher Code! Zugriff verweigert.");
+        alert("Falscher Code!");
       }
     }
   </script>
+</head>
+<body>
+  <!-- Code-Eingabe -->
+  <div id="codePrompt">
+    <h2>Bitte Code eingeben:</h2>
+    <input type="password" id="codeInput" placeholder="Code hier eingeben">
+    <button onclick="checkCode()">Bestätigen</button>
+  </div>
 
+  <!-- Hauptinhalt -->
+  <div id="content">
+    <header>
+      <h1>Hallo HAK/HAS Sacré Coeur</h1>
+      <img src="https://www.sacrecoeur.at/fileadmin/_processed_/f/5/csm_HAK_HAS_Sacre_Coeur_Logo_2019_300dpi_0b2a96a9d4.png" 
+           alt="Schullogo" class="logo">
+    </header>
+
+    <div class="admin">
+      Jetziger Administrator: Ömer Celebi 2Ck
+    </div>
+
+    <div class="news">
+      <h2>Neuigkeiten</h2>
+      <p>👉 Es wird empfohlen, bereits jetzt mit dem Lernen zu beginnen und sich auf die Wiederholungsprüfungen vorzubereiten.</p>
+      <p>1. Woche: Schule beginnt am 1. September</p>
+    </div>
+  </div>
+
+  <!-- Fußzeile -->
+  <footer>
+    Bei technischen Problemen oder Fehlern wenden Sie sich bitte an 
+    <a href="mailto:omer.celebi.business@gmail.com">omer.celebi.business@gmail.com</a>.
+  </footer>
 </body>
 </html>
+
+
