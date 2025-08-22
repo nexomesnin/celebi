@@ -2,145 +2,109 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>HAK/HAS Sacré Coeur News</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HAK/HAS Sacré Coeur</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background: #f9f9f9;
+      background-color: #f5f5f5;
     }
     header {
-      background: #ffffff;
-      padding: 2%;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      border-bottom: 2px solid #ccc;
-      flex-wrap: wrap;
+      align-items: center;
+      background-color: white;
+      padding: 10px 20px;
+      border-bottom: 2px solid #00b3b3;
     }
     header h1 {
       font-size: 18px;
       margin: 0;
     }
+    header img {
+      height: 50px;
+    }
     .admin {
       text-align: center;
-      font-size: 16px;
+      font-size: 18px;
       margin: 10px 0;
       font-weight: bold;
     }
-    .news {
-      background: turquoise;
-      padding: 5%;
-      min-height: 200px;
-      max-width: 600px;
-      margin: 20px auto;
+    main {
+      padding: 20px;
+    }
+    .news-section {
+      background-color: #00b3b3;
+      color: white;
+      padding: 20px;
       border-radius: 8px;
+      max-width: 800px;
+      margin: 0 auto;
     }
-    .news h2 {
-      margin-top: 0;
-    }
-    .logo {
-      max-width: 100%;
-      height: auto;
+    .news-item {
+      margin-bottom: 15px;
     }
     footer {
-      position: fixed;
+      position: relative;
+      margin-top: 40px;
+      padding: 40px 20px 60px 20px;
+      background-color: #f5f5f5;
+      border-top: 1px solid #ccc;
+    }
+    footer p {
+      margin: 0;
+    }
+    .footer-main {
+      font-size: 15px;
+      color: #222;
+    }
+    .footer-small {
+      font-size: 13px;
+      color: #333;
+      position: absolute;
       bottom: 10px;
       left: 10px;
-      font-size: 14px;
-      color: #333;
     }
-    footer a {
-      color: #333;
-      text-decoration: none;
-    }
-    #content {
-      display: none;
-    }
-    #codePrompt {
-      text-align: center;
-      margin-top: 20%;
-      padding: 0 10px;
-    }
-    input, button {
-      font-size: 16px;
-      padding: 8px;
-      margin: 5px 0;
-    }
-
-    /* Media Queries für kleine Bildschirme */
     @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        align-items: center;
-      }
       header h1 {
         font-size: 16px;
-        text-align: center;
       }
       .admin {
-        font-size: 14px;
+        font-size: 16px;
       }
-      .news {
-        padding: 10px;
-      }
-      footer {
-        font-size: 12px;
-      }
-      input, button {
-        width: 80%;
-        font-size: 14px;
+      .news-section {
+        padding: 15px;
       }
     }
   </style>
-  <script>
-    function checkCode() {
-      const code = document.getElementById("codeInput").value;
-      if (code === "swensac") {
-        document.getElementById("codePrompt").style.display = "none";
-        document.getElementById("content").style.display = "block";
-      } else {
-        alert("Falscher Code!");
-      }
-    }
-  </script>
 </head>
 <body>
-  <!-- Code-Eingabe -->
-  <div id="codePrompt">
-    <h2>Bitte Code eingeben:</h2>
-    <input type="password" id="codeInput" placeholder="Code hier eingeben">
-    <button onclick="checkCode()">Bestätigen</button>
-  </div>
+  <header>
+    <h1>Hallo HAK/HAS Sacré Coeur</h1>
+    <img src="https://www.sacre-coeur.at/fileadmin/_processed_/d/2/csm_HAK_HAS_Sacre_Coeur_Logo_2b2c6c7a2c.png" alt="Schullogo">
+  </header>
 
-  <!-- Hauptinhalt -->
-  <div id="content">
-    <header>
-      <h1>Hallo HAK/HAS Sacré Coeur</h1>
-      <img src="https://www.sacrecoeur.at/fileadmin/_processed_/f/5/csm_HAK_HAS_Sacre_Coeur_Logo_2019_300dpi_0b2a96a9d4.png" 
-           alt="Schullogo" class="logo">
-    </header>
+  <div class="admin">Jetziger Administrator: Ömer Celebi 2Ck</div>
 
-    <div class="admin">
-      Jetziger Administrator: Ömer Celebi 2Ck
+  <main>
+    <div class="news-section">
+      <div class="news-item"><strong>Hinweis:</strong> Man sollte schon beginnen zu lernen und sich für die Wiederholungsprüfung vorzubereiten.</div>
+      <div class="news-item">1. Woche: Schule beginnt am 1. September</div>
     </div>
+  </main>
 
-    <div class="news">
-      <h2>Neuigkeiten</h2>
-      <p>👉 Es wird empfohlen, bereits jetzt mit dem Lernen zu beginnen und sich auf die Wiederholungsprüfungen vorzubereiten.</p>
-      <p>1. Woche: Schule beginnt am 1. September</p>
-    </div>
-  </div>
-
-  <!-- Fußzeile -->
   <footer>
-    Bei technischen Problemen oder Fehlern wenden Sie sich bitte an 
-    <a href="mailto:omer.celebi.business@gmail.com">omer.celebi.business@gmail.com</a>.
+    <p class="footer-main">
+      Für technische Probleme oder Fehler bitte <strong>omer.celebi.business@gmail.com</strong> anschreiben.
+    </p>
+    <p class="footer-small">Zuria ist süß</p>
   </footer>
 </body>
 </html>
+
+
 
 
 
