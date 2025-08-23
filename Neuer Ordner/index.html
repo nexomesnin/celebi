@@ -3,106 +3,97 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HAK/HAS Sacré Coeur</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f5f5f5;
-    }
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: white;
-      padding: 10px 20px;
-      border-bottom: 2px solid #00b3b3;
-    }
-    header h1 {
-      font-size: 18px;
-      margin: 0;
-    }
-    header img {
-      height: 50px;
-    }
-    .admin {
-      text-align: center;
-      font-size: 18px;
-      margin: 10px 0;
-      font-weight: bold;
-    }
-    main {
-      padding: 20px;
-    }
-    .news-section {
-      background-color: #00b3b3;
-      color: white;
-      padding: 20px;
-      border-radius: 8px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .news-item {
-      margin-bottom: 15px;
-    }
-    footer {
-      position: relative;
-      margin-top: 40px;
-      padding: 40px 20px 60px 20px;
-      background-color: #f5f5f5;
-      border-top: 1px solid #ccc;
-    }
-    footer p {
-      margin: 0;
-    }
-    .footer-main {
-      font-size: 15px;
-      color: #222;
-    }
-    .footer-small {
-      font-size: 13px;
-      color: #333;
-      position: absolute;
-      bottom: 10px;
-      left: 10px;
-    }
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 16px;
-      }
-      .admin {
-        font-size: 16px;
-      }
-      .news-section {
-        padding: 15px;
+  <title>Schul-Website Login</title>
+  <script type="module">
+    // Firebase SDKs importieren
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+    import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+    // Deine Firebase Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyA2GqQMoHp70DU4MGwxJx_1HTmn675e58M",
+      authDomain: "awef-9c027.firebaseapp.com",
+      projectId: "awef-9c027",
+      storageBucket: "awef-9c027.firebasestorage.app",
+      messagingSenderId: "1072216046367",
+      appId: "1:1072216046367:web:7c729685b5557c7f9f8e2a",
+      measurementId: "G-2GWWMSH6FR"
+    };
+
+    // Firebase initialisieren
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    // Registrieren
+    async function register() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        // Nutzer in Firestore speichern mit verified=false
+        await setDoc(doc(db, "users", user.uid), {
+          email: user.email,
+          verified: false
+        });
+
+        alert("Registrierung erfolgreich! Bitte warte auf Freischaltung.");
+      } catch (error) {
+        alert("Fehler: " + error.message);
       }
     }
-  </style>
+
+    // Login
+    async function login() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        const ref = doc(db, "users", user.uid);
+        const snap = await getDoc(ref);
+
+        if (snap.exists() && snap.data().verified === true) {
+          document.getElementById("loginBox").style.display = "none";
+          document.getElementById("content").style.display = "block";
+        } else {
+          alert("Dein Account ist noch nicht freigeschaltet.");
+        }
+      } catch (error) {
+        alert("Fehler: " + error.message);
+      }
+    }
+
+    // Funktionen global machen
+    window.register = register;
+    window.login = login;
+  </script>
 </head>
-<body>
-  <header>
-    <h1>Hallo HAK/HAS Sacré Coeur</h1>
-    <img src="https://www.sacre-coeur.at/fileadmin/_processed_/d/2/csm_HAK_HAS_Sacre_Coeur_Logo_2b2c6c7a2c.png" alt="Schullogo">
-  </header>
+<body style="font-family: Arial, sans-serif; margin: 20px;">
 
-  <div class="admin">Jetziger Administrator: Ömer Celebi 2Ck</div>
+  <!-- Login/Registrieren -->
+  <div id="loginBox">
+    <h2>Login / Registrieren</h2>
+    <input type="email" id="email" placeholder="Email"><br><br>
+    <input type="password" id="password" placeholder="Passwort"><br><br>
+    <button onclick="register()">Registrieren</button>
+    <button onclick="login()">Login</button>
+  </div>
 
-  <main>
-    <div class="news-section">
-      <div class="news-item"><strong>Hinweis:</strong> Man sollte schon beginnen zu lernen und sich für die Wiederholungsprüfung vorzubereiten.</div>
-      <div class="news-item">1. Woche: Schule beginnt am 1. September</div>
-    </div>
-  </main>
+  <!-- Geheimer Bereich -->
+  <div id="content" style="display:none;">
+    <h1>Willkommen zur Schul-Website</h1>
+    <p>Nur freigeschaltete Nutzer können diesen Inhalt sehen 🎓</p>
+  </div>
 
-  <footer>
-    <p class="footer-main">
-      Für technische Probleme oder Fehler bitte <strong>omer.celebi.business@gmail.com</strong> anschreiben.
-    </p>
-    <p class="footer-small">Zuria ist süß</p>
-  </footer>
 </body>
 </html>
+
+
 
 
 
